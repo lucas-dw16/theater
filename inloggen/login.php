@@ -1,0 +1,137 @@
+<?php
+include '../config/db_connect.php';
+session_start();
+
+$message = "";
+$toastClass = "";
+
+if (isset($_SESSION['message'])) {
+    $message = $_SESSION['message'];
+    $toastClass = $_SESSION['message_class'] ?? 'alert-success';
+    unset($_SESSION['message'], $_SESSION['message_class']);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $gebruikersnaam = trim($_POST['gebruikersnaam'] ?? '');
+    $wachtwoord = trim($_POST['wachtwoord'] ?? '');
+
+    if (!empty($gebruikersnaam) && !empty($wachtwoord)) {
+        $stmt = $pdo->prepare("SELECT g.Id, g.Wachtwoord, r.Naam AS Rol 
+                               FROM gebruiker g 
+                               LEFT JOIN Rol r ON g.Id = r.GebruikerId 
+                               WHERE g.Gebruikersnaam = ?");
+        $stmt->execute([$gebruikersnaam]);
+
+        if ($stmt->rowCount() > 0) {
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (password_verify($wachtwoord, $user['Wachtwoord'])) {
+                $_SESSION['gebruiker_id'] = $user['Id'];
+                $_SESSION['gebruikersnaam'] = $gebruikersnaam;
+                $_SESSION['rol'] = $user['Rol'];
+                $_SESSION['logged_in'] = true;
+
+                $_SESSION['message'] = 'Je bent succesvol ingelogd!';
+                $_SESSION['message_class'] = 'alert-success';
+                header("Location: dashboard.php");
+                exit();
+            } else {
+                $message = "Onjuist e-mailadres of wachtwoord.";
+                $toastClass = "alert-danger";
+            }
+        } else {
+            $message = "E-mailadres niet gevonden.";
+            $toastClass = "alert-warning";
+        }
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="inloggen.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/295/295128.png" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="inloggen.css" />
+  <title>Inloggen</title>
+  <style>
+    .alert {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1050;
+      min-width: 300px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0.95;
+    }
+  </style>
+</head>
+<body>
+
+<?php if (!empty($message)): ?>
+  <div class="alert <?= $toastClass ?> p-3" role="alert">
+    <?= htmlspecialchars($message) ?>
+  </div>
+<?php endif; ?>
+
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form action="registratie.php" method="POST">
+      <h1>Account Aanmaken</h1>
+      <input type="text" name="voornaam" placeholder="Voornaam" required />
+      <input type="text" name="tussenvoegsel" placeholder="Tussenvoegsel (optioneel)" />
+      <input type="text" name="achternaam" placeholder="Achternaam" required />
+      <input type="email" name="gebruikersnaam" placeholder="E-mailadres" required />
+      <input type="password" name="wachtwoord" placeholder="Wachtwoord" required />
+      <button type="submit">Registreren</button>
+    </form>
+  </div>
+
+  <div class="form-container sign-in-container">
+    <form action="" method="POST">
+      <h1>Inloggen</h1>
+      <input type="email" name="gebruikersnaam" placeholder="E-mailadres" required />
+      <input type="password" name="wachtwoord" placeholder="Wachtwoord" required />
+      <button type="submit">Inloggen</button>
+    </form>
+  </div>
+
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welkom terug!</h1>
+        <p>Log in met je gegevens</p>
+        <button class="ghost" id="signIn">Inloggen</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Welcome!</h1>
+        <p>Maak een account aan</p>
+        <button class="ghost" id="signUp">Registreren</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById('container');
+  document.getElementById('signUp').addEventListener('click', () => {
+    container.classList.add("right-panel-active");
+  });
+  document.getElementById('signIn').addEventListener('click', () => {
+    container.classList.remove("right-panel-active");
+  });
+
+  setTimeout(() => {
+    const alert = document.querySelector('.alert');
+    if (alert) alert.remove();
+  }, 4000);
+</script>
+
+</body>
+</html>
