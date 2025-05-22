@@ -1,28 +1,38 @@
 <?php
 include '../config/db_connect.php';
+// Verbind met de database
+
 session_start();
 
 $message = "";
 $toastClass = "";
+// Als er een eerdere melding in de sessie staat (bijv. na redirect), haal die op
 
 if (isset($_SESSION['message'])) {
     $message = $_SESSION['message'];
     $toastClass = $_SESSION['message_class'] ?? 'alert-success';
     unset($_SESSION['message'], $_SESSION['message_class']);
 }
+// Verwerk het formulier als het een POST-verzoek is (dus als iemand probeert in te loggen)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $gebruikersnaam = trim($_POST['gebruikersnaam'] ?? '');
     $wachtwoord = trim($_POST['wachtwoord'] ?? '');
+    // Controleer of beide velden zijn ingevuld
 
-    if (!empty($gebruikersnaam) && !empty($wachtwoord)) {
+    if (!empty($gebruikersnaam) && !empty($wachtwoord)) 
+            // Bereid een SQL-query voor om gebruiker + rol op te halen via LEFT JOIN
+{
         $stmt = $pdo->prepare("SELECT g.Id, g.Wachtwoord, r.Naam AS Rol 
                                FROM gebruiker g 
                                LEFT JOIN Rol r ON g.Id = r.GebruikerId 
                                WHERE g.Gebruikersnaam = ?");
         $stmt->execute([$gebruikersnaam]);
+        // Controleer of er een gebruiker is gevonden
 
-        if ($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) 
+                // Haal de gegevens van de gebruiker op
+{
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($wachtwoord, $user['Wachtwoord'])) {
                 $_SESSION['gebruiker_id'] = $user['Id'];
@@ -34,11 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['message_class'] = 'alert-success';
                 header("Location: dashboard.php");
                 exit();
-            } else {
+            } else 
+                            // Wachtwoord klopt niet
+{
                 $message = "Onjuist e-mailadres of wachtwoord.";
                 $toastClass = "alert-danger";
             }
-        } else {
+        } else             // Geen gebruiker gevonden met dat e-mailadres
+
+        {
             $message = "E-mailadres niet gevonden.";
             $toastClass = "alert-warning";
         }

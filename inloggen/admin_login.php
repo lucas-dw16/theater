@@ -1,5 +1,7 @@
 <?php
+// admin_login.php
 session_start();
+// Controleer of de gebruiker al is ingelogd
 require_once '../config/db_connect.php';
 
 $message = '';

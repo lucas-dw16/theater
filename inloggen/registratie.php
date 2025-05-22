@@ -1,9 +1,13 @@
 <?php
+// registratie.php
+// Dit bestand is verantwoordelijk voor de registratie van een nieuwe gebruiker.
 include '../config/db_connect.php';
+// Verbind met de database
 session_start();
 
 $message = "";
 $message_class = "";
+// Als er een eerdere melding in de sessie staat (bijv. na redirect), haal die op
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $voornaam = trim($_POST['voornaam'] ?? '');
@@ -11,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $achternaam = trim($_POST['achternaam'] ?? '');
     $gebruikersnaam = trim($_POST['gebruikersnaam'] ?? '');
     $wachtwoord = trim($_POST['wachtwoord'] ?? '');
+    // Controleer of alle velden zijn ingevuld
 
     if ($voornaam && $achternaam && $gebruikersnaam && $wachtwoord) {
         $checkStmt = $pdo->prepare("SELECT Id FROM gebruiker WHERE Gebruikersnaam = ?");

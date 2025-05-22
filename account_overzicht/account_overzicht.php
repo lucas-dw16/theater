@@ -2,6 +2,8 @@
 session_start();
 require_once '../config/db_connect.php';
 
+// Controleer of de gebruiker is ingelogd
+
 try {
     $sql = "SELECT g.Id, Voornaam, Tussenvoegsel, Achternaam, Gebruikersnaam, g.Isactief, g.Datumaangemaakt, r.Naam AS Rol
             FROM Gebruiker g

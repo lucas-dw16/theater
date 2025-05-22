@@ -4,6 +4,8 @@ require_once '../config/db_connect.php';
 
 header('Content-Type: text/plain');
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gebruikerId = isset($_POST['gebruiker_id']) ? intval($_POST['gebruiker_id']) : 0;
 
