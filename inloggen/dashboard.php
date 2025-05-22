@@ -180,7 +180,7 @@ if (!isset($_SESSION['rol'])) {
                     <li class="nav-item"><a class="nav-link" href="../reservering/index.html"><i class="fa fa-calendar-check-o"></i> Reserveringsoverzicht</a></li>
                 <?php endif; ?>
                 <div class="menu-header">Systeem</div>
-                <li class="nav-item"><a class="nav-link" href="/Home-Page/Homepage.php"><i class="fa fa-arrow-left"></i> Homepagina</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.php"><i class="fa fa-arrow-left"></i> Homepagina</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php"><i class="fa fa-sign-out"></i> Uitloggen</a></li>
             </ul>
         </div>
