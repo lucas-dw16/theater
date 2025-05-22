@@ -23,7 +23,7 @@
                     <a href="index.php">Home</a>
                     <a href="overTheaterMBO.php">Over Theater MBO</a>
                 </div>
-                <div class="col-1 logincontainer"><a href="login.php" class="login">login/register</a></div>
+                <div class="col-1 logincontainer"><a href="inloggen/login.php" class="login">login/register</a></div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light d-lg-none" style="background-color: #e3f0ff !important;">
