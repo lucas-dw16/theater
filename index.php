@@ -20,11 +20,13 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <a href="voorstellingen.php">Voorstellingen</a>
-                    <a href="index.php">Home</a>
-                    <a href="overTheaterMBO.php">Over Theater MBO</a>
+                    <a id="voorstellingen-desktop">Voorstellingen</a>
+                    <a id="home-desktop">Home</a>
+                    <a id="overTheaterMBO-desktop">Over Theater MBO</a>
                 </div>
-                <div class="col-1 logincontainer"><a href="inloggen/login.php" class="login">login/register</a></div>
+                <div class="col-1 logincontainer">
+                    <a id="login-desktop" class="login">login/register</a>
+                </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light d-lg-none">
@@ -37,17 +39,17 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="voorstellingen.php">Voorstellingen</a>
+                            <a id="voorstellingen-mobile" class="nav-link">Voorstellingen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
+                            <a id="home-mobile" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="overTheaterMBO.php">Over Theater MBO</a>
+                            <a id="overTheaterMBO-mobile" class="nav-link">Over Theater MBO</a>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="login.php" class="login">login/register</a>
+                        <a id="login-mobile" class="login">login/register</a>
                     </div>
                 </div>
             </div>
@@ -107,6 +109,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
