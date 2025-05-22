@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theater MBO</title>
+    <title>theater aurora</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
@@ -15,14 +15,14 @@
 <body>
     <!-- navbar-->
     <div id="navbar-container">
-        <div class="text-center mb-0"><h5>Theater MBO</h5></div>
+        <div class="text-center mb-0"><h5>Theater Aurora</h5></div>
         <div id="navbar" class="d-none d-lg-block">
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
                     <a id="voorstellingen-desktop">Voorstellingen</a>
                     <a id="home-desktop">Home</a>
-                    <a id="overTheaterMBO-desktop">Over Theater MBO</a>
+                    <a id="overTheaterMBO-desktop">Over Theater Aurora</a>
                 </div>
                 <div class="col-1 logincontainer">
                     <a id="login-desktop" class="login">login/register</a>
@@ -31,7 +31,7 @@
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light d-lg-none">
             <div class="container-fluid">
-                <span class="navbar-brand">Theater MBO</span>
+                <span class="navbar-brand">theater Uurora</span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@
                             <a id="home-mobile" class="nav-link">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a id="overTheaterMBO-mobile" class="nav-link">Over Theater MBO</a>
+                            <a id="overTheaterMBO-mobile" class="nav-link">Over Theater Aurora</a>
                         </li>
                     </ul>
                     <div class="d-flex">
@@ -56,7 +56,7 @@
         </nav>
     </div>
     <div>
-        <h2 class="text-center m-4">Theater MBO</h2>
+        <h2 class="text-center m-4">Theater Aurora</h2>
     </div>
 
     <!-- slideshow-->
@@ -87,7 +87,7 @@
     <div class="w-75 mx-auto">
         <div class="row">
             <div class="col-6">
-                <h2 class="m-4">Over Theater MBO</h2>
+                <h2 class="m-4">Over theater Aurora</h2>
                 <p>Theater MBO is een platform dat studenten de kans biedt om hun talenten te tonen en
                     te ontwikkelen. We organiseren verschillende voorstellingen en evenementen waar studenten hun
                     vaardigheden kunnen laten zien.</p>

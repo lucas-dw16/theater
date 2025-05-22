@@ -171,7 +171,8 @@ if (!isset($_SESSION['rol'])) {
                 <?php if (in_array($rol, ['Medewerker', 'admin'])): ?>
                     <li class="nav-item"><a class="nav-link" href="../account_overzicht/account_overzicht.php"><i class="fa fa-calendar"></i> Accountoverzicht</a></li>
                     <li class="nav-item"><a class="nav-link" href="../medewerker-overzicht/MedewerkersOV.php"><i class="fa fa-users"></i> Medewerker-overzicht</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../leden-overzicht/leden_overzicht.php"><i class="fa fa-address-card"></i> Leden-overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../ticket_overzicht/ticket_overzicht.php"><i class="fa fa-address-card"></i> ticket-overzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../ticket_overzicht/tickets_scannen.php"><i class="fa fa-address-card"></i> ticket-scannen</a></li>
                 <?php endif; ?>
                 <?php if ($rol === 'admin'): ?>
                     <li class="nav-item"><a class="nav-link" href="../Aantal_leden_per_periode/index.php"><i class="fa fa-line-chart"></i> Aantal leden per periode</a></li>
