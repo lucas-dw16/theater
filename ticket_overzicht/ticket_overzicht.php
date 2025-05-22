@@ -83,7 +83,7 @@ try {
         <h1 class="mb-4 text-center">Ticketoverzicht</h1>
         <div class="mb-3">
             <a href="create_ticket.php" class="btn btn-success">
-                <i class="fa fa-plus"></i> Maak nieuw ticket
+                <i class="fa fa-plus"></i> handmatig ticket toevoegen
             </a>
         </div>
         <div class="mb-3">
@@ -120,18 +120,9 @@ try {
                                 <td><?= htmlspecialchars($row['Status']) ?></td>
                                 <td><?= htmlspecialchars($row['Datumaangemaakt']) ?></td>
                                 <td>
-                                    <form method="get" action="ticket_details.php" class="d-inline">
-                                        <input type="hidden" name="ticket_id" value="<?= $row['Id'] ?>">
-                                        <button type="submit" class="actieknop bekijk-knop btn btn-sm">
-                                            Bekijk
-                                        </button>
-                                    </form>
-                                    <form method="post" action="verwerk_ticket_acties.php" class="d-inline" onsubmit="return confirm('Weet je zeker dat je dit ticket wilt verwijderen?');">
-                                        <input type="hidden" name="ticket_id" value="<?= $row['Id'] ?>">
-                                        <button type="submit" name="verwijderen" class="actieknop verwijder-knop btn btn-sm">
-                                            Verwijder
-                                        </button>
-                                    </form>
+                                    <a href="delete_ticket.php?id=<?= htmlspecialchars($row['Id']) ?>" class="actieknop verwijder-knop" onclick="return confirm('Weet u zeker dat u dit ticket wilt verwijderen?');">
+                                        <i class="fa fa-trash"></i> Verwijderen
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
