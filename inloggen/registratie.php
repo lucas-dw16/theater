@@ -26,8 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                          VALUES (?, ?, ?, ?, ?)");
             $inserted = $insertStmt->execute([$voornaam, $tussenvoegsel, $achternaam, $gebruikersnaam, $hashedPassword]);
 
-            if ($inserted) {
-                $message = "Account succesvol aangemaakt. Je wordt doorgestuurd naar de loginpagina...";
+if ($inserted) {
+    // Haal het ID van de nieuw aangemaakte gebruiker op
+    $gebruikerId = $pdo->lastInsertId();
+
+    // Voeg standaardrol toe (bijvoorbeeld "bezoeker")
+    $rolStmt = $pdo->prepare("INSERT INTO Rol (GebruikerId, Naam) VALUES (?, ?)");
+    $rolStmt->execute([$gebruikerId, 'bezoeker']);
+
+    $message = "Account succesvol aangemaakt. Je wordt doorgestuurd naar de loginpagina...";
                 $message_class = "alert-success";
                 // Automatisch redirect na 5 seconden
                 echo '<meta http-equiv="refresh" content="5;url=login.php">';
