@@ -24,7 +24,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #e3f0ff !important;
+    background-color: #4A90E2 !important;
     border-bottom: 1px solid #8bb6e6;
     padding: 10px 0;
     gap: 30px;
@@ -33,7 +33,7 @@ html, body {
 #navbar a,
 .navbar .nav-link {
     text-decoration: none;
-    color: #205081 !important;
+    color: #d5eaff !important;
     font-size: 1.1em;
     padding: 6px 14px;
     border-radius: 4px;
@@ -54,8 +54,8 @@ a.login,
 .navbar .login {
     margin-left: 20px;
     font-weight: bold;
-    background: #b3d4fc;
-    color: #205081 !important;
+    background: #4a6c95;
+    color: #d5d8db !important;
     border-radius: 4px;
     padding: 6px 14px;
     transition: background 0.2s, color 0.2s;
