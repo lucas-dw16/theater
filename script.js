@@ -1,19 +1,25 @@
+// Wacht tot de hele DOM geladen is voordat scripts uitgevoerd worden
 document.addEventListener("DOMContentLoaded", function () {
-    // Navigation function with a URL existence check
+
+    // Navigatiefunctie: checkt of URL echt bestaat voordat er naartoe genavigeerd wordt
     function navigate(element, url) {
         if (element) {
             element.addEventListener("click", function (e) {
-                e.preventDefault();
-                // Use fetch to send a HEAD request to check if the URL exists
+                e.preventDefault(); // voorkom standaard linkgedrag
+
+                // Verstuur een HEAD-verzoek om te checken of de pagina bestaat (geen volledige inhoud nodig)
                 fetch(url, { method: 'HEAD' })
                     .then(response => {
                         if (response.ok) {
+                            // Als pagina bestaat (status 200), ga erheen
                             window.location.href = url;
                         } else {
+                            // Pagina bestaat niet
                             alert("pagina niet gevonden, excuus voor het ongemak");
                         }
                     })
                     .catch(error => {
+                        // Bij netwerkfout of serverfout
                         console.error("Error checking URL:", error);
                         alert("Error checking page: " + url);
                     });
@@ -21,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Map element IDs to their respective URLs
+    // Array met id's van knoppen/links en de URLs waar ze naartoe moeten verwijzen
     const links = [
         { id: "voorstellingen-desktop", url: "voorstellingen.php" },
         { id: "home-desktop", url: "index.php" },
@@ -33,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "login-mobile", url: "inloggen/login.php" }
     ];
 
-    // Set up navigation with existence check for each link
+    // Loop door alle links en koppel de navigatie
     links.forEach(link => {
         const element = document.getElementById(link.id);
-        navigate(element, link.url);
+        navigate(element, link.url); // pas navigatiefunctie toe per item
     });
 });
