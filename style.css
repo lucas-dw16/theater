@@ -88,3 +88,15 @@ a.login,
     justify-content: flex-end;
     align-items: center;
 }
+section {
+    scroll-margin-top: 80px;
+}
+
+section h2 {
+    font-size: 2.5rem;
+}
+
+.btn-lg {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
