@@ -22,5 +22,5 @@ $_SESSION['message'] = $message;
 $_SESSION['message_class'] = $message_class;
 
 // Terug naar loginpagina
-header("Location: login.php");
+header("Location: ../index.php");
 exit();

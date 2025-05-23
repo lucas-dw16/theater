@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $_SESSION['message'] = 'Je bent succesvol ingelogd!';
                 $_SESSION['message_class'] = 'alert-success';
-                header("Location: dashboard.php");
+                header("Location: ../index.php");
                 exit();
             } else 
                             // Wachtwoord klopt niet
@@ -69,7 +69,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/295/295128.png" />
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="inloggen.css" />
+  <link rel="stylesheet" href="inloggen.css">
+  <script src="inloggen.js"></script>
+
+
+
   <title>Inloggen</title>
   <style>
     .alert {
@@ -87,6 +94,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="../index.php">Theater Aurora</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="../index.php">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../index.php#voorstellingen">Voorstellingen</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../index.php#over">Over</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center">
+        <button class="btn btn-sm btn-light me-2" onclick="document.body.classList.toggle('dark-mode')">
+          🌗 Donker/licht
+        </button>
+        <?php if (isset($_SESSION['gebruiker_id'])): ?>
+          <a href="logout.php" class="btn btn-outline-light">Uitloggen</a>
+        <?php else: ?>
+          <a href="login.php" class="btn btn-outline-light">Inloggen</a>
+        <?php endif; ?>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Zorg dat het formulier niet onder navbar geplakt zit -->
+<div style="margin-top: 90px;"></div>
 
 <?php if (!empty($message)): ?>
   <div class="alert <?= $toastClass ?> p-3" role="alert">
@@ -131,6 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
   const container = document.getElementById('container');
@@ -145,6 +190,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     const alert = document.querySelector('.alert');
     if (alert) alert.remove();
   }, 4000);
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('bg-dark');
+    } else {
+      navbar.classList.remove('bg-dark');
+    }
+  });
+document.getElementById("loginForm").addEventListener("submit", function (e) {
+  const username = this.gebruikersnaam.value.trim();
+  const password = this.wachtwoord.value.trim();
+
+  if (username === "" || password === "") {
+    e.preventDefault();
+    alert("Vul zowel gebruikersnaam als wachtwoord in.");
+  }
+});
 </script>
 
 </body>

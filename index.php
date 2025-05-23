@@ -1,90 +1,228 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Theater Aurora</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theater Aurora</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-light text-dark">
+<body>
+
+
+<!-- Popup nieuwsbrief melding -->
+<div class="popup-newsletter" id="popupNewsletter">
+  <strong>Blijf op de hoogte!</strong>
+  <p>Meld je aan voor onze nieuwsbrief.</p>
+  <button class="btn btn-primary btn-sm" onclick="document.getElementById('popupNewsletter').style.display='none'">Sluiten</button>
+</div>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Theater Aurora</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAurora">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarAurora">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a id="home-desktop" class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a id="voorstellingen-desktop" class="nav-link" href="#">Voorstellingen</a></li>
-                <li class="nav-item"><a id="overTheaterMBO-desktop" class="nav-link" href="#">Over</a></li>
-                <li class="nav-item"><a id="mangmentDashboard" class="nav-link" href="#">Dashboard</a></li>
-            </ul>
-            <a id="login-desktop" class="btn btn-outline-light">Login/Register</a>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Theater Aurora</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#voorstellingen">Voorstellingen</a></li>
+        <li class="nav-item"><a class="nav-link" href="#over">Over</a></li>
+        <?php if (isset($_SESSION['gebruiker_id'])): ?>
+          <li class="nav-item"><a class="nav-link" href="inloggen/dashboard.php">Dashboard</a></li>
+        <?php endif; ?>
+      </ul>
+      <?php if (isset($_SESSION['gebruiker_id'])): ?>
+        <a href="inloggen/logout.php" class="btn btn-outline-light">Uitloggen</a>
+      <?php else: ?>
+        <a href="inloggen/login.php" class="btn btn-outline-light">Inloggen</a>
+      <?php endif; ?>
+      <div id="darkToggle">
+  <button class="btn btn-sm btn-secondary" onclick="document.body.classList.toggle('dark-mode')">🌓 Donker/licht</button>
+</div>
     </div>
+  </div>
 </nav>
 
-<!-- CAROUSEL -->
-<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://www.louwmanmuseum.nl/app/uploads/2020/01/k2_Y8A3819.jpg" class="d-block w-100" alt="..." style="height:500px; object-fit:cover;">
-        </div>
-        <div class="carousel-item">
-            <img src="https://www.theaterkrant.nl/wp-content/uploads/2022/10/Een-leuk-avondje-uit-Kurt-van-der-Elst-scaled-e1665740748889-1240x814.jpg" class="d-block w-100" style="height:500px; object-fit:cover;">
-        </div>
-        <div class="carousel-item">
-            <img src="https://www.jansstheater.nl/img/webp/_9119_1737934534.webp" class="d-block w-100" style="height:500px; object-fit:cover;">
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
+<!-- Popup nieuwsbrief melding -->
+<div class="popup-newsletter" id="popupNewsletter">
+  <strong>Blijf op de hoogte!</strong>
+  <p>Meld je aan voor onze nieuwsbrief.</p>
+  <button class="btn btn-primary btn-sm" onclick="document.getElementById('popupNewsletter').style.display='none'">Sluiten</button>
 </div>
 
-<!-- INFO SECTION -->
-<div class="container my-5">
-    <div class="row align-items-center">
-        <div class="col-md-6">
-            <h2>Over Theater Aurora</h2>
-            <p>Theater Aurora biedt een podium aan jong talent. We organiseren voorstellingen, workshops en evenementen waar creativiteit centraal staat. Ontdek wat wij doen!</p>
-        </div>
-        <div class="col-md-6">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1TQwaJHQpZnzanhlBgCCOsbSjj8m5LXjPTA&s" class="img-fluid rounded" alt="Over Theater Aurora">
-        </div>
+<!-- HERO -->
+<section class="hero-section text-white d-flex align-items-center" style="height: 90vh; background: url('img/image.png') center/cover no-repeat;">
+  <div class="container text-center">
+    <h1 class="display-4 mb-3">Welkom bij Theater Aurora</h1>
+    <p class="lead mb-4">Een podium voor magie, passie en talent. Beleef het bij ons.</p>
+    
+    <!-- Knoppen naast elkaar -->
+    <div class="d-flex justify-content-center gap-3">
+      <a href="inloggen/login.php" class="btn btn-outline-light btn-lg">Inloggen</a>
+      <a href="#voorstellingen" class="btn btn-light btn-lg text-primary">Voorstellingen</a>
     </div>
-</div>
-
-<!-- CENTRALE VOORSTELLINGEN-SECTIE -->
-<section class="py-5" style="background: linear-gradient(to bottom, #003366, #00509d); color: white;">
-    <div class="container text-center">
-        <h2 class="display-5 fw-bold mb-4">Ervaar Magie in Theater Aurora</h2>
-        <p class="lead mb-4">
-            Theater is meer dan entertainment. Het is emotie, kunst, verbinding.<br>
-            Bij Theater Aurora brengen we unieke voorstellingen tot leven – van moderne toneelstukken tot klassiekers en experimentele producties.
-        </p>
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-8">
-            </div>
-        </div>
-        <p class="mb-4">
-            Elk seizoen nodigen we nieuwe makers, studenten en professionals uit om hun talent te tonen.
-            Kom kijken, laat je raken, en steun de kunst van morgen.
-        </p>
-        <a id="voorstellingen-mobile" class="btn btn-light btn-lg px-5 py-2 mt-2">Bekijk het programma</a>
-    </div>
+  </div>
 </section>
 
 
-<!-- JS -->
+<!-- VOORSTELLINGEN -->
+<section class="voorstellingen text-center" id="voorstellingen">
+  <div class="container">
+    <h2 class="display-5 mb-4">Onze Voorstellingen</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <img src="img/Voorstelling 1" alt="Voorstelling 1">
+        <h4 class="mt-3">De Nachtstem</h4>
+        <p>Een duister sprookje vol muziek, schaduw en licht.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="img/Voorstelling 2" alt="Voorstelling 2">
+        <h4 class="mt-3">Stilte in de Storm</h4>
+        <p>Een meeslepend toneelstuk over verlies en hoop.</p>
+      </div>
+      <div class="col-md-4">
+        <img src="img/Voorstelling 3" alt="Voorstelling 3">
+        <h4 class="mt-3">Dans der Tijden</h4>
+        <p>Een dansvoorstelling waarin generaties elkaar raken.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="countdown-section" class="bg-dark text-white text-center py-5">
+  <h2 class="fw-bold">Volgende voorstelling begint over:</h2>
+  <div id="countdown" class="display-5 mt-3"></div>
+  <p class="mt-3">Mis het niet – koop nu je tickets!</p>
+</section>
+
+<footer style="background: linear-gradient(to right, #44006b, #8f00ff); color: white; padding: 4rem 1rem;">
+  <div class="container">
+    <!-- Nieuwsbrief -->
+    <div class="row mb-5 align-items-center">
+      <div class="col-md-6">
+        <h2 class="fw-bold" style="background: linear-gradient(to right, #00bfff, #ff00aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Onze nieuwsbrief ontvangen?</h2>
+        <p class="mt-2">Twee keer per maand als eerste op de hoogte van nieuwe voorstellingen en aanbiedingen?<br>
+        <small>Lees onze <a href="#" class="text-white text-decoration-underline">privacy- en cookieverklaring</a>.</small></p>
+      </div>
+      <div class="col-md-6">
+        <form class="row g-2">
+          <div class="col-8">
+            <input type="email" class="form-control form-control-lg" placeholder="Je e-mailadres">
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary btn-lg w-100">Inschrijven</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Info blokken -->
+    <div class="row text-start text-white">
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">Handige links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white text-decoration-none">Bereikbaarheid</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Veelgestelde vragen</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Inloggen</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Technische gegevens</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">Zakelijke verhuur</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white text-decoration-none">Ruimtes</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Mogelijkheden</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Faciliteiten</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">Contactgegevens</h5>
+        <p>Marnixstraat 402<br><strong>Mail ons</strong><br><strong>Bel ons:</strong> van 11.00 tot 20.00 uur</p>
+      </div>
+    </div>
+
+    <!-- Social + logo -->
+    <div class="row mt-4 align-items-center">
+      <div class="col-md-6">
+        <div class="social-icons">
+          <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
+          <a href="#" class="text-white me-3"><i class="fab fa-tiktok fa-lg"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6 text-end">
+        <span>DeLaMar is een initiatief van de VandenEnde Foundation</span>
+      </div>
+    </div>
+
+    <!-- Onderkant -->
+    <div class="mt-4 text-center border-top pt-3">
+      <small>
+        <a href="#" class="text-white text-decoration-none me-3">Privacy- en cookieverklaring</a>
+        <a href="#" class="text-white text-decoration-none me-3">Disclaimer</a>
+        <a href="#" class="text-white text-decoration-none">Voorwaarden</a>
+      </small>
+    </div>
+  </div>
+</footer>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script>
+  window.addEventListener('scroll', function () {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = form.querySelector("input[type='email']").value;
+      if (email.trim() === "") {
+        alert("Voer een geldig e-mailadres in.");
+        return;
+      }
+      alert("Bedankt voor je inschrijving! We houden je op de hoogte.");
+      form.reset();
+    });
+
+    // popup na 10 sec tonen
+    setTimeout(() => {
+      document.getElementById('popupNewsletter').style.display = 'block';
+    }, 10000);
+  });
+  // Afteller naar volgende voorstelling
+const countdownDate = new Date("May 30, 2025 20:00:00").getTime();
+const countdownEl = document.getElementById("countdown");
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+  if (distance < 0) {
+    countdownEl.innerHTML = "De voorstelling is begonnen!";
+    return;
+  }
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  countdownEl.innerHTML = `${days} dagen ${hours}u ${minutes}m ${seconds}s`;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+</script>
 </body>
 </html>
