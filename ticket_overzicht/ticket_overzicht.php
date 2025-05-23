@@ -103,7 +103,6 @@ try {
                 <table class="table table-bordered table-hover bg-white">
                     <thead class="table-light">
                         <tr>
-                            <th>ID</th>
                             <th>Nummer</th>
                             <th>Barcode</th>
                             <th>Status</th>
@@ -114,7 +113,6 @@ try {
                     <tbody>
                         <?php foreach ($result as $row): ?>
                             <tr>
-                                <td><?= htmlspecialchars($row['Id']) ?></td>
                                 <td><?= htmlspecialchars($row['Nummer']) ?></td>
                                 <td><?= htmlspecialchars($row['Barcode']) ?></td>
                                 <td><?= htmlspecialchars($row['Status']) ?></td>
