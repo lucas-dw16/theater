@@ -156,7 +156,10 @@ try {
             <p class="alert alert-warning">Geen accounts te weergeven.</p>
         <?php endif; ?>
     </div>
+<!-- Bootstrap Bundle met Popper (vereist voor navbar toggling) -->
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
