@@ -7,6 +7,8 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../img/logo.png">
+
   <title>Theater Aurora</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,7 +27,11 @@ session_start();
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Theater Aurora</a>
+<a class="navbar-brand d-flex align-items-center" href="#">
+  <img src="../img/logo.png" alt="Aurora Logo" style="height: 40px; width: auto; margin-right: 10px;">
+  Theater Aurora
+</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -149,19 +155,22 @@ session_start();
     </div>
 
     <!-- Social + logo -->
-    <div class="row mt-4 align-items-center">
-      <div class="col-md-6">
-        <div class="social-icons">
-          <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-          <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-          <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
-          <a href="#" class="text-white me-3"><i class="fab fa-tiktok fa-lg"></i></a>
-        </div>
-      </div>
-      <div class="col-md-6 text-end">
-        <span>DeLaMar is een initiatief van de VandenEnde Foundation</span>
-      </div>
+<div class="row mt-4 align-items-center">
+  <div class="col-md-6">
+    <div class="social-icons">
+      <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-tiktok fa-lg"></i></a>
     </div>
+  </div>
+  <div class="col-md-6 text-end">
+<a href="index.php">
+  <img src="../img/logo.png" alt="Aurora Logo" style="height: 80px; width: auto;">
+</a>
+  </div>
+</div>
+
 
     <!-- Onderkant -->
     <div class="mt-4 text-center border-top pt-3">
