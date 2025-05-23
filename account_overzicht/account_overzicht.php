@@ -108,7 +108,7 @@ try {
                 <table class="table table-bordered table-hover bg-white">
                     <thead class="table-light">
                         <tr>
-                            <th>ID</th>
+                            <th>nummer</th>
                             <th>Naam</th>
                             <th>Gebruikersnaam</th>
                             <th>Rol</th>
