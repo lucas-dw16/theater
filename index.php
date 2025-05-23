@@ -72,7 +72,6 @@
         </p>
         <div class="row justify-content-center mb-4">
             <div class="col-md-8">
-                <img src="https://images.unsplash.com/photo-1515165562835-c3b6d454f33f" alt="Theaterscène" class="img-fluid rounded shadow">
             </div>
         </div>
         <p class="mb-4">
