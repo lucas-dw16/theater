@@ -36,7 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "voorstellingen-mobile", url: "voorstellingen.php" },
         { id: "home-mobile", url: "index.php" },
         { id: "overTheaterMBO-mobile", url: "overTheaterMBO.php" },
-        { id: "login-mobile", url: "inloggen/login.php" }
+        { id: "login-mobile", url: "inloggen/login.php" },
+        { id: "mangmentDashboard", url: "inloggen/dashboard.php" }
+
     ];
 
     // Loop door alle links en koppel de navigatie

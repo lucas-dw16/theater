@@ -169,8 +169,6 @@ if (!isset($_SESSION['rol'])) {
             <ul class="nav flex-column">
                 <li class="nav-item"><a class="nav-link active" href="#"><i class="fa fa-home"></i> Dashboard</a></li>
                 <?php if (in_array($rol, ['Medewerker', 'admin'])): ?>
-                    <li class="nav-item"><a class="nav-link" href="../account_overzicht/account_overzicht.php"><i class="fa fa-calendar"></i> Accountoverzicht</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../medewerker-overzicht/MedewerkersOV.php"><i class="fa fa-users"></i> Medewerker-overzicht</a></li>
                     <li class="nav-item"><a class="nav-link" href="../ticket_overzicht/ticket_overzicht.php"><i class="fa fa-address-card"></i> ticket-overzicht</a></li>
                     <li class="nav-item"><a class="nav-link" href="../ticket_overzicht/tickets_scannen.php"><i class="fa fa-address-card"></i> ticket-scannen</a></li>
                 <?php endif; ?>
@@ -179,6 +177,10 @@ if (!isset($_SESSION['rol'])) {
                     <li class="nav-item"><a class="nav-link" href="../overzicht_geplanned lessen/index.php"><i class="fa fa-calendar-check-o"></i> Geplande lessen</a></li>
                     <li class="nav-item"><a class="nav-link" href="../Aantal_reservering_periode/index.html"><i class="fa fa-calendar-check-o"></i> Reserveringen per periode</a></li>
                     <li class="nav-item"><a class="nav-link" href="../reservering/index.html"><i class="fa fa-calendar-check-o"></i> Reserveringsoverzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../account_overzicht/account_overzicht.php"><i class="fa fa-calendar"></i> Accountoverzicht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../medewerker-overzicht/MedewerkersOV.php"><i class="fa fa-users"></i> Medewerker-overzicht</a></li>
+
+
                 <?php endif; ?>
                 <div class="menu-header">Systeem</div>
                 <li class="nav-item"><a class="nav-link" href="../index.php"><i class="fa fa-arrow-left"></i> Homepagina</a></li>

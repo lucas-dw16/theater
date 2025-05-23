@@ -23,6 +23,7 @@
                     <a id="voorstellingen-desktop">Voorstellingen</a>
                     <a id="home-desktop">Home</a>
                     <a id="overTheaterMBO-desktop">Over Theater Aurora</a>
+                    <a id="mangmentDashboard">mangmentDashboard</a>
                 </div>
                 <div class="col-1 logincontainer">
                     <a id="login-desktop" class="login">login/register</a>
