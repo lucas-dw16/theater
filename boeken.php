@@ -1,6 +1,59 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['gebruiker_id'])) {
+    echo '
+    <!DOCTYPE html>
+    <html lang="nl">
+    <head>
+      <meta charset="UTF-8">
+      <title>Toegang geweigerd</title>
+      <meta http-equiv="refresh" content="5;url=inloggen/login.php">
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin-top: 100px;
+          background-color: #f8d7da;
+          color: #721c24;
+        }
+        .box {
+          display: inline-block;
+          padding: 30px;
+          border: 2px solid #f5c6cb;
+          background-color: #f8d7da;
+          border-radius: 10px;
+        }
+        #countdown {
+          font-weight: bold;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="box">
+        <h2>⛔ Je bent niet ingelogd</h2>
+        <p>Je wordt binnen <span id="countdown">5</span> seconden doorgestuurd naar de loginpagina...</p>
+      </div>
+
+      <script>
+        let count = 5;
+        const el = document.getElementById("countdown");
+        setInterval(() => {
+          count--;
+          if (count > 0) {
+            el.textContent = count;
+          }
+        }, 1000);
+      </script>
+    </body>
+    </html>
+    ';
+    exit;
+}
+?>
+
+<?php
+
 // Voorstellinglijst (kan ook uit database komen)
 $voorstellingen = [
     [
