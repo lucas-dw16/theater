@@ -15,6 +15,13 @@ session_start();
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Decoratieve vormen -->
+<div class="shapes-container">
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+  <div class="triangle triangle1"></div>
+  <div class="triangle triangle2"></div>
+</div>
 
 
 <!-- Popup nieuwsbrief melding -->
@@ -40,8 +47,11 @@ session_start();
         <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#voorstellingen">Voorstellingen</a></li>
         <li class="nav-item"><a class="nav-link" href="#over">Over</a></li>
+
         <?php if (isset($_SESSION['gebruiker_id'])): ?>
           <li class="nav-item"><a class="nav-link" href="inloggen/dashboard.php">Dashboard</a></li>
+                  <li class="nav-item"><a class="nav-link" href="boeken.php">Tickets</a></li>
+
         <?php endif; ?>
       </ul>
       <?php if (isset($_SESSION['gebruiker_id'])): ?>
@@ -87,16 +97,23 @@ session_start();
         <img src="img/Voorstelling 1" alt="Voorstelling 1">
         <h4 class="mt-3">De Nachtstem</h4>
         <p>Een duister sprookje vol muziek, schaduw en licht.</p>
+        <button  class="boeken"><a href="boeken.php" class="btn btn-warning boeken1">Koop</a>
+</button>
       </div>
       <div class="col-md-4">
         <img src="img/Voorstelling 2" alt="Voorstelling 2">
         <h4 class="mt-3">Stilte in de Storm</h4>
         <p>Een meeslepend toneelstuk over verlies en hoop.</p>
+        <button  class="boeken"><a href="boeken.php" class="btn btn-warning boeken1">Koop</a>
+</button>
       </div>
       <div class="col-md-4">
         <img src="img/Voorstelling 3" alt="Voorstelling 3">
         <h4 class="mt-3">Dans der Tijden</h4>
         <p>Een dansvoorstelling waarin generaties elkaar raken.</p>
+        <button  class="boeken"><a href="boeken.php" class="btn btn-warning boeken1">Koop</a>
+</button>
+
       </div>
     </div>
   </div>
@@ -105,6 +122,29 @@ session_start();
   <h2 class="fw-bold">Volgende voorstelling begint over:</h2>
   <div id="countdown" class="display-5 mt-3"></div>
   <p class="mt-3">Mis het niet – koop nu je tickets!</p>
+</section>
+
+<!-- OVER SECTION -->
+<section id="over" class="py-5 bg-light text-dark">
+  <!-- Glow Circle Light Effect -->
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Tekst -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="over-glow-circle"></div>
+
+        <h2 class="fw-bold">Over Theater Aurora</h2>
+        <p class="lead">Theater Aurora is meer dan een podium. Het is een plek waar verhalen tot leven komen, emoties worden gedeeld en kunst wordt gevierd. Sinds onze oprichting brengen wij voorstellingen die raken, inspireren en verbinden.</p>
+        <p>Van moderne musicals tot klassiek toneel en vernieuwende dans, ons gevarieerde programma biedt voor ieder wat wils. Wij geloven dat theater een krachtig middel is om mensen samen te brengen en cultuur toegankelijk te maken voor iedereen.</p>
+        <a href="#voorstellingen" class="btn btn-outline-primary mt-3">Bekijk voorstellingen</a>
+      </div>
+
+      <!-- Afbeelding -->
+      <div class="col-md-6">
+        <img src="img/teaterzaal.png" alt="Theaterzaal Aurora" class="img-fluid rounded shadow">
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer style="background: linear-gradient(to right, #44006b, #8f00ff); color: white; padding: 4rem 1rem;">
@@ -231,6 +271,30 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
+// Check alle links op de pagina of ze bestaan voordat je navigeert
+document.querySelectorAll("a[href]").forEach(link => {
+  link.addEventListener("click", function (e) {
+    const url = this.getAttribute("href");
+
+    // Negeer anchors (#) of javascript:void links
+    if (url.startsWith("#") || url.startsWith("javascript")) return;
+
+    // Verhindert standaardnavigatie tijdelijk
+    e.preventDefault();
+
+    fetch(url, { method: "HEAD" })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = url;
+        } else {
+          alert("⚠️ Deze pagina is momenteel niet beschikbaar.");
+        }
+      })
+      .catch(() => {
+        alert("⚠️ Er is een fout opgetreden. Probeer het later opnieuw.");
+      });
+  });
+});
 
 </script>
 </body>

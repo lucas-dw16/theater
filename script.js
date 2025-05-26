@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
         { id: "home-mobile", url: "index.php" },
         { id: "overTheaterMBO-mobile", url: "overTheaterMBO.php" },
         { id: "login-mobile", url: "inloggen/login.php" },
-        { id: "mangmentDashboard", url: "inloggen/dashboard.php" }
-
+        { id: "mangmentDashboard", url: "inloggen/dashboard.php" },
+        { id: "voorstellingen", url: "voorstellingen.php" }
     ];
 
     // Loop door alle links en koppel de navigatie
@@ -46,4 +46,28 @@ document.addEventListener("DOMContentLoaded", function () {
         const element = document.getElementById(link.id);
         navigate(element, link.url); // pas navigatiefunctie toe per item
     });
+});
+// Check alle links op de pagina of ze bestaan voordat je navigeert
+document.querySelectorAll("a[href]").forEach(link => {
+  link.addEventListener("click", function (e) {
+    const url = this.getAttribute("href");
+
+    // Negeer anchors (#) of javascript:void links
+    if (url.startsWith("#") || url.startsWith("javascript")) return;
+
+    // Verhindert standaardnavigatie tijdelijk
+    e.preventDefault();
+
+    fetch(url, { method: "HEAD" })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = url;
+        } else {
+          alert("⚠️ Deze pagina is momenteel niet beschikbaar.");
+        }
+      })
+      .catch(() => {
+        alert("⚠️ Er is een fout opgetreden. Probeer het later opnieuw.");
+      });
+  });
 });

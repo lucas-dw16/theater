@@ -96,3 +96,259 @@ body.dark-mode .nav-link {
     .hero-section .btn:hover {
       transform: scale(1.05);
     }
+.boeken {
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgb(250, 0, 0);
+color: white;
+  padding: 20px;
+  margin: 20px;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+ font-family: 'Times New Roman', Times, serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  border: 2px solid #ff0000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: linear-gradient(to right, #9a1010, #eb1383);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+  &:visited {
+    color: inherit;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+  &:visited {
+    color: inherit;
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+  
+}
+.bg-dark {
+  background-color: #000000 !important;
+  background: linear-gradient(to right, #000000,#2204539e,#bf0dd347 , #572828, #710606);
+  color: white !important;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(186, 63, 63);
+  text-align: center;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+  &:visited {
+    color: inherit;
+  }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+  }
+
+}
+.btn-warning {
+  background: linear-gradient(to right, #9a1010, #eb1383);
+  color: white;
+  border: none; 
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:  0.3s ease, transform 0.3s ease;
+  width: 100%;
+}
+#over h2 {
+  background-color: #00509d;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#over img {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+.shapes-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Cirkels */
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: float 10s infinite ease-in-out alternate;
+}
+.circle1 {
+  width: 100px;
+  height: 100px;
+  background: #ff0080;
+  top: 20px;
+  left: 20px;
+  animation-delay: 0s;
+}
+.circle2 {
+  width: 60px;
+  height: 60px;
+  background: #00c3ff;
+  top: 100px;
+  left: 80px;
+  animation-delay: 2s;
+}
+
+/* Driehoeken */
+.triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0.15;
+  animation: float 12s infinite ease-in-out alternate;
+}
+.triangle1 {
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 70px solid #ffc107;
+  top: 60px;
+  left: 150px;
+  animation-delay: 1s;
+}
+.triangle2 {
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 50px solid #00e676;
+  top: 160px;
+  left: 50px;
+  animation-delay: 3s;
+}
+
+/* Animatie */
+@keyframes float {
+  from {
+    transform: translateY(0px) rotate(0deg);
+  }
+  to {
+    transform: translateY(15px) rotate(10deg);
+  }
+}
+/* Lichtgevende cirkel achter de OVER sectie */
+.over-glow-circle {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  width: 700px;
+  height: 1000px;
+  background: radial-gradient(circle, rgb(89, 48, 1), transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Zorg dat #over relatief gepositioneerd is zodat de cirkel zich daaraan hecht */
+#over {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.bg-light {
+    --bs-bg-opacity: 1;
+    background-color: rgb(51, 0, 117) !important;
+}
+.text-dark
+ {
+    --bs-text-opacity: 1;
+    color: rgb(255 255 255) !important;
+}
