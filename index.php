@@ -173,19 +173,19 @@ session_start();
       <div class="col-md-4 mb-3">
         <h5 class="fw-bold">Handige links</h5>
         <ul class="list-unstyled">
-          <li><a href="#" class="text-white text-decoration-none">Bereikbaarheid</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Veelgestelde vragen</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Inloggen</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Technische gegevens</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Bereikbaarheid</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Contact</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Veelgestelde vragen</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Inloggen</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Technische gegevens</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-3">
         <h5 class="fw-bold">Zakelijke verhuur</h5>
         <ul class="list-unstyled">
-          <li><a href="#" class="text-white text-decoration-none">Ruimtes</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Mogelijkheden</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Faciliteiten</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Ruimtes</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Mogelijkheden</a></li>
+          <li><a href="s" class="text-white text-decoration-none">Faciliteiten</a></li>
         </ul>
       </div>
       <div class="col-md-4 mb-3">
@@ -198,10 +198,10 @@ session_start();
 <div class="row mt-4 align-items-center">
   <div class="col-md-6">
     <div class="social-icons">
-      <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-      <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-      <a href="#" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
-      <a href="#" class="text-white me-3"><i class="fab fa-tiktok fa-lg"></i></a>
+      <a href="s" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
+      <a href="s" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
+      <a href="s" class="text-white me-3"><i class="fab fa-youtube fa-lg"></i></a>
+      <a href="s" class="text-white me-3"><i class="fab fa-tiktok fa-lg"></i></a>
     </div>
   </div>
   <div class="col-md-6 text-end">
@@ -215,9 +215,9 @@ session_start();
     <!-- Onderkant -->
     <div class="mt-4 text-center border-top pt-3">
       <small>
-        <a href="#" class="text-white text-decoration-none me-3">Privacy- en cookieverklaring</a>
-        <a href="#" class="text-white text-decoration-none me-3">Disclaimer</a>
-        <a href="#" class="text-white text-decoration-none">Voorwaarden</a>
+        <a href="s" class="text-white text-decoration-none me-3">Privacy- en cookieverklaring</a>
+        <a href="s" class="text-white text-decoration-none me-3">Disclaimer</a>
+        <a href="z" class="text-white text-decoration-none">Voorwaarden</a>
       </small>
     </div>
   </div>
