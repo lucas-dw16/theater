@@ -5,6 +5,7 @@ if (!isset($_SESSION['gebruiker_id'])) {
     echo '
     <!DOCTYPE html>
     <html lang="nl">
+    
     <head>
       <meta charset="UTF-8">
       <title>Toegang geweigerd</title>
@@ -60,6 +61,7 @@ $voorstellingen = [
         'naam' => 'De Nachtstem',
         'prijs' => 25.00,
         'image' => 'img/Voorstelling 1.png'
+        
     ],
     [
         'naam' => 'Stilte in de Storm',
@@ -113,7 +115,10 @@ foreach ($items as $item) {
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css">
+  
 </head>
 <style>
      .navbar {
@@ -166,47 +171,82 @@ foreach ($items as $item) {
     </div>
   </div>
 </nav>
-   <h1>Theater Aurora</h1>
+<h1 class="text-center mt-4 mb-4">🎭 Theater Aurora</h1>
 
-<div class="container mt-5">
+<div class="container-sm mt-4 mb-5">
   <h2 class="mb-4">🎟️ Boek Tickets</h2>
-  <div class="row mb-3">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-3">
 <?php foreach ($voorstellingen as $voorstelling): ?>
-  <div class="card" style="width: 18rem;">
-    <img src="<?= $voorstelling['image'] ?>" class="card-img-top" alt="<?= $voorstelling['naam'] ?>">
-    <div class="card-body">
-      <h5 class="card-title"><?= htmlspecialchars($voorstelling['naam']) ?></h5>
-      <p class="card-text">Prijs: €<?= number_format($voorstelling['prijs'], 2, ',', '.') ?></p>
-<a href="boeken.php?add=<?= urlencode($voorstelling['naam']) ?>" class="btn btn-primary">Toevoegen</a>
+  <div class="col">
+    <div class="card h-100">
+      <img src="<?= $voorstelling['image'] ?>" class="card-img-top img-fluid" alt="<?= $voorstelling['naam'] ?>">
+      <div class="card-body">
+        <h5 class="card-title"><?= htmlspecialchars($voorstelling['naam']) ?></h5>
+        <p class="card-text">Prijs: €<?= number_format($voorstelling['prijs'], 2, ',', '.') ?></p>
+        <a href="boeken.php?add=<?= urlencode($voorstelling['naam']) ?>" class="btn btn-primary">Toevoegen</a>
+      </div>
     </div>
   </div>
 <?php endforeach; ?>
 
-  </div>
 
-  <h4 class="mt-5">🛒 Winkelwagen</h4>
-  <table class="table table-bordered">
-    <thead>
-      <tr><th>Voorstelling</th><th>Aantal</th><th>Prijs</th><th>Subtotaal</th><th></th></tr>
-    </thead>
-    <tbody>
-      <?php foreach ($items as $item): ?>
+
+<hr class="my-5">
+
+<div class="card shadow-sm p-4">
+  <h4 class="mb-4">🛒 Winkelwagen</h4>
+  <div class="table-responsive">
+    <table class="table table-striped align-middle text-center">
+      <thead class="table-primary">
         <tr>
-          <td><?= htmlspecialchars($item['naam']) ?></td>
-          <td><?= $item['aantal'] ?></td>
-          <td>€<?= number_format($item['prijs'], 2, ',', '.') ?></td>
-          <td>€<?= number_format($item['prijs'] * $item['aantal'], 2, ',', '.') ?></td>
-          <td><a href="?delete=<?= urlencode($item['naam']) ?>" class="btn btn-danger btn-sm">Verwijder</a></td>
+          <th scope="col">Voorstelling</th>
+          <th scope="col">Aantal</th>
+          <th scope="col">Prijs</th>
+          <th scope="col">Subtotaal</th>
+          <th scope="col">Actie</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-    <tfoot>
-      <tr><th colspan="3" class="text-end">Totaal</th><th colspan="2">€<?= number_format($totaal, 2, ',', '.') ?></th></tr>
-    </tfoot>
-  </table>
+      </thead>
+      <tbody>
+        <?php if (empty($items)): ?>
+          <tr>
+            <td colspan="5" class="text-muted text-center py-4">
+              Je winkelwagen is leeg. Voeg tickets toe om te bestellen.
+            </td>
+          </tr>
+        <?php else: ?>
+          <?php foreach ($items as $item): ?>
+            <tr>
+              <td><?= htmlspecialchars($item['naam']) ?></td>
+              <td><?= (int)$item['aantal'] ?></td>
+              <td>€<?= number_format($item['prijs'], 2, ',', '.') ?></td>
+              <td>€<?= number_format($item['prijs'] * $item['aantal'], 2, ',', '.') ?></td>
+              <td>
+                <a href="?delete=<?= urlencode($item['naam']) ?>"
+                   class="btn btn-sm btn-outline-danger"
+                   aria-label="Verwijder <?= htmlspecialchars($item['naam']) ?>">
+                  Verwijder
+                </a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
+      <?php if (!empty($items)): ?>
+        <tfoot>
+          <tr>
+            <th colspan="3" class="text-end">Totaal</th>
+            <th colspan="2">€<?= number_format($totaal, 2, ',', '.') ?></th>
+          </tr>
+        </tfoot>
+      <?php endif; ?>
+    </table>
+  </div>
 </div>
+
+<!-- PayPal en status -->
 <div id="paypal-button-container" class="mt-4"></div>
-<div id="payment-status" class="mt-3 fw-bold"></div>
+<div id="payment-status" class="mt-3 fw-bold text-center"></div>
+
 
 <!-- PayPal SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
