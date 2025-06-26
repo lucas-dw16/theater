@@ -2,26 +2,21 @@
 session_start();
 require_once '../config/db_connect.php';
 
-header('Content-Type: text/plain');
-
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $gebruikerId = isset($_POST['gebruiker_id']) ? intval($_POST['gebruiker_id']) : 0;
 
     // ROL WIJZIGEN
     if (isset($_POST['rol_wijzigen']) && !empty($_POST['nieuwe_rol'])) {
         $nieuweRol = $_POST['nieuwe_rol'];
-
-        // Alleen toegestane rollen
         $toegestaneRollen = ['Lid', 'Medewerker', 'Admin'];
+
         if (!in_array($nieuweRol, $toegestaneRollen)) {
-            echo "error: Ongeldige rol geselecteerd.";
+            $_SESSION['actie_fout'] = "Ongeldige rol geselecteerd.";
+            header("Location: account_overzicht.php");
             exit;
         }
 
         try {
-            // Rol check
             $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM Rol WHERE GebruikerId = ?");
             $checkStmt->execute([$gebruikerId]);
             $bestaat = $checkStmt->fetchColumn();
@@ -35,10 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute([$gebruikerId, $nieuweRol]);
             }
 
-            echo "success";
+            $_SESSION['actie_succes'] = "Rol succesvol gewijzigd.";
         } catch (PDOException $e) {
-            echo "error: Fout bij wijzigen rol - " . $e->getMessage();
+            $_SESSION['actie_fout'] = "Fout bij wijzigen rol: " . $e->getMessage();
         }
+
+        header("Location: account_overzicht.php");
         exit;
     }
 
@@ -47,18 +44,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $pdo->prepare("DELETE FROM Rol WHERE GebruikerId = ?")->execute([$gebruikerId]);
             $pdo->prepare("DELETE FROM Gebruiker WHERE Id = ?")->execute([$gebruikerId]);
-            echo "success";
+            $_SESSION['actie_succes'] = "Account succesvol verwijderd.";
         } catch (PDOException $e) {
-            echo "error: Fout bij verwijderen - " . $e->getMessage();
+            $_SESSION['actie_fout'] = "Fout bij verwijderen: " . $e->getMessage();
         }
+
+        header("Location: account_overzicht.php");
         exit;
     }
 
-    // Ongeldige actie
-    echo "error: Ongeldige actie.";
+    $_SESSION['actie_fout'] = "Ongeldige actie.";
+    header("Location: account_overzicht.php");
     exit;
 }
 
-// Geen POST-verzoek
-echo "error: Ongeldige aanvraag.";
+$_SESSION['actie_fout'] = "Ongeldige aanvraag.";
+header("Location: account_overzicht.php");
 exit;
