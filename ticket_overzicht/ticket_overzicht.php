@@ -118,6 +118,9 @@ try {
                                 <td><?= htmlspecialchars($row['Status']) ?></td>
                                 <td><?= htmlspecialchars($row['Datumaangemaakt']) ?></td>
                                 <td>
+                                    <a href="edit_ticket.php?id=<?= htmlspecialchars($row['Id']) ?>" class="actieknop bekijk-knop">
+                                        <i class="fa fa-pencil"></i> Bewerken
+                                    </a>
                                     <a href="delete_ticket.php?id=<?= htmlspecialchars($row['Id']) ?>" class="actieknop verwijder-knop" onclick="return confirm('Weet u zeker dat u dit ticket wilt verwijderen?');">
                                         <i class="fa fa-trash"></i> Verwijderen
                                     </a>
