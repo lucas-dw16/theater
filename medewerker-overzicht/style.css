@@ -1,5 +1,3 @@
-/* Bestand: style.css */
-
 body {
     background-color: #f8f9fa;
     font-family: Arial, sans-serif;
@@ -90,4 +88,50 @@ input.form-control {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 25px;
+}
+
+.hamburger div {
+    background-color: #333;
+    height: 3px;
+    margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        background-color: #eee;
+        padding: 10px;
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        border: 1px solid #ccc;
+        width: 150px;
+        z-index: 10;
+    }
+    .menu.show {
+        display: flex;
+    }
+    .hamburger {
+        display: flex;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
 }
