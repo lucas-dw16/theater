@@ -1,7 +1,5 @@
 <?php
-// Bestand: update_medewerker.php
 require_once '../config/db_connect.php';
-
 header('Content-Type: application/json');
 
 if (
@@ -16,7 +14,11 @@ if (
         $medewerkersoort = trim($_POST['medewerkersoort']);
         $nummer = intval($_POST['nummer']);
 
-        // 1. Haal gebruikerId op via medewerkerId
+        if (!is_numeric($_POST['nummer']) || $nummer <= 0 || $nummer > 9999) {
+            echo json_encode(['success' => false, 'message' => 'Ongeldig medewerkernummer. Vul een nummer in tussen 1 en 9999.']);
+            exit();
+        }
+
         $stmt = $pdo->prepare("SELECT GebruikerId FROM Medewerker WHERE Id = ?");
         $stmt->execute([$id]);
 
@@ -27,11 +29,17 @@ if (
 
         $gebruikerId = $stmt->fetchColumn();
 
-        // 2. Update gebruiker
+        $checkEmail = $pdo->prepare("SELECT Id FROM Gebruiker WHERE Gebruikersnaam = ? AND Id != ?");
+        $checkEmail->execute([$gebruikersnaam, $gebruikerId]);
+
+        if ($checkEmail->rowCount() > 0) {
+            echo json_encode(['success' => false, 'message' => 'Dit e-mailadres is al in gebruik.']);
+            exit();
+        }
+
         $updateGebruiker = $pdo->prepare("UPDATE Gebruiker SET Voornaam = ?, Tussenvoegsel = ?, Achternaam = ?, Gebruikersnaam = ? WHERE Id = ?");
         $updateGebruiker->execute([$voornaam, $tussenvoegsel, $achternaam, $gebruikersnaam, $gebruikerId]);
 
-        // 3. Update medewerker
         $updateMedewerker = $pdo->prepare("UPDATE Medewerker SET Medewerkersoort = ?, Nummer = ? WHERE Id = ?");
         $updateMedewerker->execute([$medewerkersoort, $nummer, $id]);
 
