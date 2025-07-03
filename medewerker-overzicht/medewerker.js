@@ -36,7 +36,6 @@ function laadMedewerkers() {
                 data.data.forEach((medewerker, index) => {
                     const rij = document.createElement("tr");
 rij.innerHTML = `
-    <td>${index + 1}</td>
     <td>${medewerker.Voornaam} ${medewerker.Tussenvoegsel ?? ''} ${medewerker.Achternaam}</td>
     <td>${medewerker.Gebruikersnaam}</td>
     <td>${medewerker.Medewerkersoort}</td>
