@@ -16,6 +16,11 @@ if (
         $medewerkersoort = trim($_POST['medewerkersoort']);
         $nummer = intval($_POST['nummer']);
 
+        if (!is_numeric($_POST['nummer']) || $nummer <= 0 || $nummer > 9999) {
+            echo json_encode(['success' => false, 'message' => 'Ongeldig medewerkernummer. Vul een nummer in tussen 1 en 9999.']);
+            exit();
+        }
+
         // ✅ Controleer of e-mailadres al bestaat
         $checkEmail = $pdo->prepare("SELECT Id FROM gebruiker WHERE Gebruikersnaam = ?");
         $checkEmail->execute([$gebruikersnaam]);
